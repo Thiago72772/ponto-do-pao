@@ -70,3 +70,16 @@ export const receitasIniciais: Receita[] = [
 export function formatBRL(valor: number) {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
+
+export function formatQtd(valor: number, unidade: string) {
+  const decimais = unidade === "kg" || unidade === "Kg" || unidade === "L" ? 3 : 0
+  return valor.toLocaleString("pt-BR", {
+    minimumFractionDigits: decimais,
+    maximumFractionDigits: decimais,
+    useGrouping: false,
+  })
+}
+
+export function parseNumero(valor: string) {
+  return Number.parseFloat(valor.replace(",", "."))
+}

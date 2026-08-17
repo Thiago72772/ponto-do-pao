@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
-import { formatBRL, produtos, type Produto } from "@/lib/bakery-data"
+import { formatBRL, formatQtd, parseNumero, produtos, type Produto } from "@/lib/bakery-data"
 import {
   Banknote,
   CreditCard,
@@ -53,7 +53,7 @@ export function PdvScreen() {
   }
 
   function lerBalanca() {
-    const valor = peso ? Number.parseFloat(peso) : +(Math.random() * 0.8 + 0.2).toFixed(3)
+    const valor = peso ? parseNumero(peso) : +(Math.random() * 0.8 + 0.2).toFixed(3)
     if (!Number.isNaN(valor) && valor > 0) {
       adicionar(produtos[0], valor)
       setPeso("")
@@ -157,7 +157,7 @@ export function PdvScreen() {
                       {item.produto.nome}
                     </p>
                     <p className="text-xs text-zinc-400">
-                      {item.qtd} {item.produto.unidade} · {formatBRL(item.produto.preco)}
+                      {formatQtd(item.qtd, item.produto.unidade)} {item.produto.unidade} · {formatBRL(item.produto.preco)}
                     </p>
                   </div>
                   <div className="flex items-center gap-1">

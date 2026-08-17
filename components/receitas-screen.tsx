@@ -7,7 +7,9 @@ import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import {
   formatBRL,
+  formatQtd,
   ingredientes,
+  parseNumero,
   receitasIniciais,
   type ItemReceita,
 } from "@/lib/bakery-data"
@@ -25,7 +27,7 @@ export function ReceitasScreen() {
   }
 
   function adicionarItem() {
-    const qtd = Number.parseFloat(novaQtd.replace(",", "."))
+    const qtd = parseNumero(novaQtd)
     if (Number.isNaN(qtd) || qtd <= 0) return
     setItens((atual) => {
       const existente = atual.find((i) => i.ingredienteId === novoId)
@@ -84,10 +86,9 @@ export function ReceitasScreen() {
               </label>
               <input
                 id="rendimento"
-                type="number"
-                min={1}
-                value={rendimento}
-                onChange={(e) => setRendimento(Number.parseInt(e.target.value) || 0)}
+                inputMode="decimal"
+                value={String(rendimento)}
+                onChange={(e) => setRendimento(Number.parseInt(parseNumero(e.target.value).toString()) || 0)}
                 className="h-11 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3 text-sm font-semibold tabular-nums text-zinc-900 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
               />
             </div>
@@ -150,7 +151,7 @@ export function ReceitasScreen() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold text-zinc-900">{ing.nome}</p>
                     <p className="text-xs text-zinc-400">
-                      {item.quantidade} {ing.unidade} × {formatBRL(ing.custoPorUnidade)}
+                      {formatQtd(item.quantidade, ing.unidade)} {ing.unidade} × {formatBRL(ing.custoPorUnidade)}
                     </p>
                   </div>
                   <span className="text-sm font-bold tabular-nums text-zinc-900">

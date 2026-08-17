@@ -11,8 +11,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
-import { formatBRL, ingredientes } from "@/lib/bakery-data"
-import { AlertTriangle, PackagePlus, TrendingDown, Wallet } from "lucide-react"
+import { formatBRL, formatQtd, ingredientes } from "@/lib/bakery-data"
+import { TriangleAlert as AlertTriangle, PackagePlus, TrendingDown, Wallet } from "lucide-react"
 
 export function EstoqueScreen() {
   const baixos = ingredientes.filter((i) => i.qtdAtual <= i.minimo)
@@ -73,7 +73,7 @@ export function EstoqueScreen() {
                 <TableRow key={item.id} className="border-zinc-100">
                   <TableCell className="font-semibold text-zinc-900">{item.nome}</TableCell>
                   <TableCell className="text-right tabular-nums text-zinc-700">
-                    {item.qtdAtual.toLocaleString("pt-BR")} {item.unidade}
+                    {formatQtd(item.qtdAtual, item.unidade)} {item.unidade}
                   </TableCell>
                   <TableCell className="text-right tabular-nums text-zinc-700">
                     {formatBRL(item.custoPorUnidade)}
