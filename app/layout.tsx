@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
+import { brandConfig } from '@/lib/brand-config'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
@@ -9,7 +10,7 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Ponto do Pão OS — Gestão de Padarias',
+  title: `${brandConfig.nomeFantasia} OS — ${brandConfig.slogan}`,
   description:
     'Sistema completo de gestão para padarias: frente de caixa (PDV), estoque de ingredientes e fichas técnicas de receitas.',
   generator: 'v0.app',

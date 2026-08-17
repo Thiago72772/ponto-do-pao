@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { brandConfig } from "@/lib/brand-config"
 import { Croissant, ScrollText, ShoppingCart, Warehouse } from "lucide-react"
 
 export type Tela = "pdv" | "estoque" | "receitas"
@@ -25,8 +26,8 @@ export function AppSidebar({
           <Croissant className="size-5" />
         </div>
         <div className="hidden md:block">
-          <p className="text-sm font-bold leading-tight text-zinc-900">Ponto do Pão</p>
-          <p className="text-xs font-medium text-amber-600">OS · Gestão</p>
+          <p className="text-sm font-bold leading-tight text-zinc-900">{brandConfig.nomeFantasia}</p>
+          <p className="text-xs font-medium text-amber-600">OS · {brandConfig.slogan}</p>
         </div>
       </div>
 
